@@ -1,28 +1,14 @@
+import 'package:counter_app/viewmodels/CounterViewModels.dart';
 import 'package:flutter/widgets.dart';
-import 'package:tp2/viewmodels/CounterViewModels.dart';
-
+import 'package:provider/provider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 class CustomCounter extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    final counterViewModel = context.watch<CounterViewModel>(
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacementNamed(context, '/');
-                },
-                child: Image.asset('assets/logo.png', height: 40),
-              ),
-              const SizedBox(width: 10),
-              const Text(appTitle),
-            ],
-          )
-      ),
-      body: Center(
+    final counterViewModel = context.watch<CounterViewModels>();
+    return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -36,20 +22,20 @@ class CustomCounter extends StatelessWidget{
                 children: [
                   IconButton(
                     icon: const Icon(Icons.remove),
-                    onPressed: _decrementCounter,
+                    onPressed: counterViewModel.decrementCounter,
                   ),
                   Text(
-                    '$_counter',
+                    '$counterViewModel.counter',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   Icon(
                     Icons.favorite,
-                    color: _counter < 0 ? Colors.black : Colors.red,
+                    color: counterViewModel.counter < 0 ? Colors.black : Colors.red,
                     size: 50,
                   ),
                   IconButton(
                     icon: const Icon(Icons.add),
-                    onPressed: _incrementCounter,
+                    onPressed: counterViewModel.incrementCounter,
                   ),
                 ],
               ),
@@ -62,8 +48,7 @@ class CustomCounter extends StatelessWidget{
             ),
           ],
         ),
-      ),
-    );
+      );
 
   }
 }

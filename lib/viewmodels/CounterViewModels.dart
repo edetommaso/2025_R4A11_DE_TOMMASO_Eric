@@ -1,5 +1,5 @@
+import 'package:counter_app/models/CounterModels.dart';
 import 'package:flutter/foundation.dart';
-import 'package:tp2/models/CounterModels.dart';
 
 class CounterViewModels extends ChangeNotifier {
 
@@ -7,7 +7,7 @@ class CounterViewModels extends ChangeNotifier {
   CounterViewModels(this._counterModels);
 
 
-  int get counterModels => _counterModels.counter;
+  int get counter => _counterModels.counter;
 
   // Méthode pour incrémenter le compteur
   void incrementCounter() {
